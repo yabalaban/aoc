@@ -1,11 +1,12 @@
-with open("input/day1.txt") as f:
-    inp = f.readlines()
+import utils 
+
+inp = utils.download_input(day=1)
 
 ls, rs = [], [] 
-for item in inp:
-    items = item.split('   ')
+for row in inp:
+    items = row.strip().split('   ')
     l = int(items[0])
-    r = int(items[1].strip())
+    r = int(items[1])
     ls.append(l)
     rs.append(r)
 ls.sort()
