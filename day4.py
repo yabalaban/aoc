@@ -1,43 +1,46 @@
+import itertools as it
+
 import utils 
 
 inp = utils.download_input(day=4)
-
 letters = [row.strip() for row in inp]
-patterns = [
-    lambda l, x, y: x + 3 < len(l) and l[x][y] == 'X' and l[x + 1][y] == 'M' and l[x + 2][y] == 'A' and l[x + 3][y] == 'S', 
-    lambda l, x, y: x + 3 < len(l) and l[x + 3][y] == 'X' and l[x + 2][y] == 'M' and l[x + 1][y] == 'A' and l[x][y] == 'S',  
-    lambda l, x, y: y + 3 < len(l[x]) and l[x][y] == 'X' and l[x][y + 1] == 'M' and l[x][y + 2] == 'A' and l[x][y + 3] == 'S',   
-    lambda l, x, y: y + 3 < len(l[x]) and l[x][y + 3] == 'X' and l[x][y + 2] == 'M' and l[x][y + 1] == 'A' and l[x][y] == 'S',   
-    lambda l, x, y: x + 3 < len(l) and y + 3 < len(l[x]) and l[x][y] == 'X' and l[x + 1][y + 1] == 'M' and l[x + 2][y + 2] == 'A' and l[x + 3][y + 3] == 'S',   
-    lambda l, x, y: x + 3 < len(l) and y + 3 < len(l[x]) and l[x + 3][y + 3] == 'X' and l[x + 2][y + 2] == 'M' and l[x + 1][y + 1] == 'A' and l[x][y] == 'S',
-    lambda l, x, y: x + 3 < len(l) and y + 3 < len(l[x]) and l[x][y + 3] == 'X' and l[x + 1][y + 2] == 'M' and l[x + 2][y + 1] == 'A' and l[x + 3][y] == 'S',   
-    lambda l, x, y: x + 3 < len(l) and y + 3 < len(l[x]) and l[x + 3][y] == 'X' and l[x + 2][y + 1] == 'M' and l[x + 1][y + 2] == 'A' and l[x][y + 3] == 'S',   
-]
 
-mas_patterns = [ 
-    lambda l, x, y: x + 2 < len(l) and y + 2 < len(l[x]) and l[x][y] == 'M' and l[x + 1][y + 1] == 'A' and l[x + 2][y + 2] == 'S',
-    lambda l, x, y: x + 2 < len(l) and y + 2 < len(l[x]) and l[x + 2][y + 2] == 'M' and l[x + 1][y + 1] == 'A' and l[x][y] == 'S',
-    lambda l, x, y: x + 2 < len(l) and y + 2 < len(l[x]) and l[x][y + 2] == 'M' and l[x + 1][y + 1] == 'A' and l[x + 2][y] == 'S',
-    lambda l, x, y: x + 2 < len(l) and y + 2 < len(l[x]) and l[x + 2][y] == 'M' and l[x + 1][y + 1] == 'A' and l[x][y + 2] == 'S',
-]
+def line_patterns(s):
+    return [
+        lambda l, x, y: x + len(s) - 1 < len(l) and all([l[x + i][y] == c for i, c in enumerate(s)]),
+        lambda l, x, y: x + len(s) - 1 < len(l) and all([l[x + len(s) - i - 1][y] == c for i, c in enumerate(s)]),
+        lambda l, x, y: y + len(s) - 1 < len(l) and all([l[x][y + i] == c for i, c in enumerate(s)]),
+        lambda l, x, y: y + len(s) - 1 < len(l) and all([l[x][y + len(s) - i - 1] == c for i, c in enumerate(s)]),
+    ]
+
+
+def diag_patterns(s):
+    return [
+        lambda l, x, y: x + len(s) - 1 < len(l) and y + len(s) - 1 < len(l[x]) and all([l[x + i][y + i] == c for i, c in enumerate(s)]),   
+        lambda l, x, y: x + len(s) - 1 < len(l) and y + len(s) - 1 < len(l[x]) and all([l[x + len(s) - i - 1][y + len(s) - i - 1] == c for i, c in enumerate(s)]),   
+        lambda l, x, y: x + len(s) - 1 < len(l) and y + len(s) - 1 < len(l[x]) and all([l[x + i][y + len(s) - i - 1] == c for i, c in enumerate(s)]),   
+        lambda l, x, y: x + len(s) - 1 < len(l) and y + len(s) - 1 < len(l[x]) and all([l[x + len(s) - i - 1][y + i] == c for i, c in enumerate(s)]), 
+    ]
+
+
+def count(input, x, y, patterns):
+    return sum([int(pattern(input, x, y)) for pattern in patterns])
+
+
+xlen = len(letters)
+ylen = len(letters[0])
 
 # problem 1
 res = 0
-for i in range(len(letters)):
-    for j in range(len(letters[i])):
-        for pattern in patterns:
-            if pattern(letters, i, j):
-                res += 1
+patterns = line_patterns("XMAS") + diag_patterns("XMAS")
+for x, y in it.product(range(xlen), range(ylen)):
+    res += count(letters, x, y, patterns)
 print(res)
 
 # problem 2
 res = 0
-for i in range(len(letters)):
-    for j in range(len(letters[i])):
-        c = 0
-        for pattern in mas_patterns:
-            if pattern(letters, i, j):
-                c += 1
-        if c >= 2:
-            res += 1
+patterns = diag_patterns("MAS")
+for x, y in it.product(range(xlen), range(ylen)):
+    if count(letters, x, y, patterns) >= 2:
+        res += 1
 print(res)
