@@ -4,7 +4,7 @@ inp = utils.download_input(day=7)
 rows = [row.strip() for row in inp]
 
 
-def validate(goal, nums, acc, concat=False):
+def validate(goal, nums, acc):
     if not nums:
         return goal == acc
     val = nums[0]
