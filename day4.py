@@ -2,8 +2,7 @@ import itertools as it
 
 import utils 
 
-inp = utils.download_input(day=4)
-letters = [row.strip() for row in inp]
+letters = utils.download_input(day=4)
 
 def line_patterns(s):
     return [

@@ -1,8 +1,7 @@
 from collections import defaultdict
 import utils 
 
-inp = utils.download_input(day=9)
-rows = [row.strip() for row in inp]
+rows = utils.download_input(day=9)
 rows = rows[0]
 row = [int(d) for d in rows]
 

@@ -12,7 +12,7 @@ def download_input(day, year=2024):
     cached = f"{cached_path}/input.txt"
     if os.path.isfile(cached):
         with open(cached) as file:
-            return file.readlines()
+            return file.read().splitlines()
     else:
         request = urllib.request.Request(url)
         request.add_header('Cookie', aoc_session)
@@ -21,5 +21,5 @@ def download_input(day, year=2024):
             os.makedirs(cached_path, exist_ok=True)
             with open(cached, 'w') as file:
                 file.write(content)
-            return content.split("\n")[:-1]
+            return content.splitlines()
  

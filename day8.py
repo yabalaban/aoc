@@ -2,8 +2,7 @@ from collections import defaultdict
 import math
 import utils 
 
-inp = utils.download_input(day=8)
-rows = [row.strip() for row in inp]
+rows = utils.download_input(day=8)
 
 antennas = defaultdict(set)
 

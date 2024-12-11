@@ -1,7 +1,6 @@
 import utils 
 
-inp = utils.download_input(day=6)
-rows = [row.strip() for row in inp]
+rows = utils.download_input(day=6)
 
 dirs = [(0, 1), (-1, 0), (0, -1), (1, 0)]
 

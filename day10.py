@@ -1,8 +1,7 @@
 from collections import defaultdict, deque
 import utils 
 
-inp = utils.download_input(day=10)
-rows = [row.strip() for row in inp]
+rows = utils.download_input(day=10)
 rows = [[int(x) for x in row] for row in rows]
 
 dir = [(0, -1), (0, 1), (-1, 0), (1, 0)]

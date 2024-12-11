@@ -1,7 +1,6 @@
 import utils 
 
-inp = utils.download_input(day=7)
-rows = [row.strip() for row in inp]
+rows = utils.download_input(day=7)
 
 
 def validate(goal, nums, acc):

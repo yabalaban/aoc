@@ -1,9 +1,8 @@
 from collections import defaultdict
 import utils 
 
-inp = utils.download_input(day=5)
+rows = utils.download_input(day=5)
 
-rows = [row.strip() for row in inp]
 sep = rows.index("")
 rrules, rupdates = rows[:sep], rows[sep + 1:]
 

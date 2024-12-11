@@ -4,7 +4,7 @@ inp = utils.download_input(day=1)
 
 ls, rs = [], [] 
 for row in inp:
-    items = row.strip().split('   ')
+    items = row.split()
     l = int(items[0])
     r = int(items[1])
     ls.append(l)

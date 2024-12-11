@@ -15,16 +15,16 @@ def is_safe(levels):
 
 res1 = 0
 for row in inp:
-    items = row.split(" ")
-    levels =  [int(item.strip()) for item in items]
+    items = row.split()
+    levels =  [int(item) for item in items]
     if is_safe(levels):
         res1 += 1
 print(res1)
 
 res2 = 0
 for row in inp:
-    items = row.split(" ")
-    levels =  [int(item.strip()) for item in items]
+    items = row.split()
+    levels =  [int(item) for item in items]
     if is_safe(levels):
         res2 += 1 
     else: 

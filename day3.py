@@ -50,7 +50,7 @@ def parse_dont(inp, idx):
 
 
 idx = 0
-program = ' '.join([x.strip() for x in inp])
+program = ' '.join(inp)
 while idx < len(program):
     flag, idx = parse_do(program, idx)
     if flag is not None:
