@@ -1,6 +1,6 @@
-import utils 
+from utils import site 
 
-inp = utils.download_input(day=3)
+inp = site.download_input(day=3)
 
 res1 = 0
 res2 = 0

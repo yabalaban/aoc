@@ -1,7 +1,7 @@
-from utils import p2d, p3d
-import utils 
+from utils import site 
+from utils.ds import p2d, p3d
 
-rows = utils.download_input(day=15)
+rows = site.download_input(day=15)
 
 
 d = { "^": p2d(0, -1), "v": p2d(0, 1), "<": p2d(-1, 0), ">": p2d(1, 0) }

@@ -1,7 +1,7 @@
 from collections import defaultdict
-import utils 
+from utils import site 
 
-rows = utils.download_input(day=5)
+rows = site.download_input(day=5)
 
 sep = rows.index("")
 rrules, rupdates = rows[:sep], rows[sep + 1:]

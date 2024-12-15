@@ -1,7 +1,7 @@
 from collections import defaultdict
-import utils 
+from utils import site 
 
-rows = utils.download_input(day=9)
+rows = site.download_input(day=9)
 rows = rows[0]
 row = [int(d) for d in rows]
 

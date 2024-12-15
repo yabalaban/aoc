@@ -1,8 +1,8 @@
 import itertools as it
 
-import utils 
+from utils import site 
 
-letters = utils.download_input(day=4)
+letters = site.download_input(day=4)
 
 def line_patterns(s):
     return [

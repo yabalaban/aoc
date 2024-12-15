@@ -1,8 +1,8 @@
 from collections import defaultdict
 from functools import reduce
-import utils 
+from utils import site 
 
-rows = utils.download_input(day=14)
+rows = site.download_input(day=14)
 
 robots = [] 
 for row in rows:

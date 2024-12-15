@@ -1,6 +1,6 @@
-import utils 
+from utils import site 
 
-inp = utils.download_input(day=2)
+inp = site.download_input(day=2)
 
 def is_safe(levels):
     incr = levels[1] > levels[0]

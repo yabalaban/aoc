@@ -1,6 +1,6 @@
-import utils 
+from utils import site 
 
-rows = utils.download_input(day=7)
+rows = site.download_input(day=7)
 
 
 def validate(goal, nums, acc):

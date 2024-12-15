@@ -1,9 +1,10 @@
 import sympy as sp 
 
-import utils 
+from utils import site 
+
+rows = site.download_input(day=13)
 
 
-rows = utils.download_input(day=13)
 games = [] 
 
 for i in range(0, len(rows), 4):

@@ -1,6 +1,7 @@
-import utils 
+from utils import site 
 
-inp = utils.download_input(day=1)
+
+inp = site.download_input(day=1)
 
 ls, rs = [], [] 
 for row in inp:

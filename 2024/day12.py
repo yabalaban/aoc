@@ -1,8 +1,8 @@
 from collections import defaultdict, deque
 from itertools import product
-import utils 
+from utils import site 
 
-rows = utils.download_input(day=12)
+rows = site.download_input(day=12)
 nx, ny = len(rows[0]), len(rows)
 
 

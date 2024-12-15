@@ -1,7 +1,7 @@
 from collections import defaultdict 
-import utils 
+from utils import site 
 
-rows = utils.download_input(day=11)
+rows = site.download_input(day=11)
 row = rows[0].split()
 pebbles = defaultdict(int)
 for pebble in row:

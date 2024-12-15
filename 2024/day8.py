@@ -1,8 +1,8 @@
 from collections import defaultdict
 import math
-import utils 
+from utils import site 
 
-rows = utils.download_input(day=8)
+rows = site.download_input(day=8)
 
 antennas = defaultdict(set)
 
