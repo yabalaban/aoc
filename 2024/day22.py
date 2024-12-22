@@ -31,28 +31,22 @@ def change(secret, n=2000):
     for _ in range(n):
         secret = next_secret(secret)
         delta.append((secret % 10, secret % 10 - delta[-1][0]))
-    return delta[1:]
+    return delta[1:], secret
 
 
-def offer(delta):
-    book = defaultdict(int)
-    for i, d in enumerate(delta[3:]):
-        k = (delta[i][1], delta[i + 1][1], delta[i + 2][1], delta[i + 3][1])
+gbook = defaultdict(int)
+def goffer(delta):
+    book = set()
+    for d0, d1, d2, d3 in zip(delta, delta[1:], delta[2:], delta[3:]):
+        k = (d0[1], d1[1], d2[1], d3[1])
         if k in book:
             continue 
-        book[k] = d[0]
+        gbook[k] += d3[0]
+        book.add(k)
     return book
 
 
 deltas = [change(int(r)) for r in rows]
-books = [offer(delta) for delta in deltas]
-total = set() 
-for book in books:
-    total = total.union(list(book.keys()))
-    
-max = 0
-for seq in total:
-    smax = sum([book[seq] for book in books])
-    if smax > max:
-        max = smax
-print('max', max)
+[goffer(delta[0]) for delta in deltas]
+print(sum([delta[1] for delta in deltas]))
+print(max(gbook.values()))
